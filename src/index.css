@@ -354,6 +354,11 @@ p  { font-size: var(--body-size); }
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
+  align-items: stretch;
+}
+
+.plans-grid > * {
+  height: 100%;
 }
 
 @media (max-width: 1023px) {
@@ -436,19 +441,19 @@ p  { font-size: var(--body-size); }
   padding: var(--section-pad-v) var(--section-pad-h) !important;
 }
 
-.calc-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
-  max-width: var(--container-max);
-  margin: 0 auto;
+.calc-plans-grid {
+  grid-template-columns: repeat(4, 1fr) !important;
 }
 
 @media (max-width: 1023px) {
-  .calc-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
+  .calc-plans-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 639px) {
+  .calc-plans-grid {
+    grid-template-columns: 1fr !important;
   }
 }
 

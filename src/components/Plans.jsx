@@ -1,13 +1,52 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { C } from "../tokens";
 import FadeUp from "./FadeUp";
 
 const plans = [
-  { name: "Seedling", stage: "First Stage",   desc: "Perfect for beginners. Start small and test the fertile ground of green finance.", rate: "8.5",  featured: false, icon: "🌱" },
-  { name: "Sprout",   stage: "Growth Stage",  desc: "Aggressive growth for active investors looking to accelerate their returns.",      rate: "12.2", featured: false, icon: "🌿" },
-  { name: "Tree",     stage: "Maturity Stage",desc: "Stable, long-term wealth building with premium benefits and lower risk.",          rate: "15.8", featured: true,  icon: "🌳" },
-  { name: "Forest",   stage: "Legacy Stage",  desc: "Comprehensive estate planning and multi-generational wealth preservation.",       rate: "18.5", featured: false, icon: "🏔️" },
+  {
+    name: "Seedling",
+    stage: "Plan 1",
+    desc: "Perfect for beginners. Start small and grow your wealth with zero lock-in.",
+    icon: "🌱",
+    featured: false,
+    offerAmount: 4000,
+    originalAmount: 3000,
+    minHold: null,
+    withdrawal: "Withdraw anytime",
+  },
+  {
+    name: "Sprout",
+    stage: "Plan 2",
+    desc: "Grow steadily with a short commitment period and flexible exit.",
+    icon: "🌿",
+    featured: false,
+    offerAmount: 6000,
+    originalAmount: 5000,
+    minHold: "3 months minimum hold",
+    withdrawal: "Withdraw anytime",
+  },
+  {
+    name: "Tree",
+    stage: "Plan 3",
+    desc: "Stable mid-term investment with premium returns and strong growth.",
+    icon: "🌳",
+    featured: true,
+    offerAmount: 8000,
+    originalAmount: 7000,
+    minHold: "6 months minimum hold",
+    withdrawal: "Withdraw anytime",
+  },
+  {
+    name: "Forest",
+    stage: "Plan 4",
+    desc: "Maximum returns for long-term investors building generational wealth.",
+    icon: "🏔️",
+    featured: false,
+    offerAmount: 12000,
+    originalAmount: 10000,
+    minHold: "12 months minimum hold",
+    withdrawal: "Withdraw anytime",
+  },
 ];
 
 function PlanCard({ plan }) {
@@ -35,6 +74,8 @@ function PlanCard({ plan }) {
           : "1px solid rgba(196,168,130,0.20)",
         borderRadius: 16, padding: "28px 24px", cursor: "pointer",
         position: "relative", overflow: "hidden",
+        height: "100%", boxSizing: "border-box",
+        display: "flex", flexDirection: "column",
       }}
     >
       {plan.featured && (
@@ -44,15 +85,7 @@ function PlanCard({ plan }) {
           pointerEvents: "none",
         }} />
       )}
-      {plan.featured && (
-        <div style={{
-          position: "absolute", top: 16, right: 16,
-          background: C.gold, borderRadius: 6, padding: "3px 10px",
-          fontSize: 10, fontWeight: 700, color: C.forest, letterSpacing: 0.8, textTransform: "uppercase",
-        }}>
-          Top Choice
-        </div>
-      )}
+
 
       <div style={{ fontSize: 36, marginBottom: 16 }}>{plan.icon}</div>
       <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 22, fontWeight: 700, color: "#FFFFFF", margin: "0 0 4px" }}>
@@ -61,28 +94,40 @@ function PlanCard({ plan }) {
       <p style={{ fontSize: 12, color: "rgba(196,168,130,0.65)", fontWeight: 500, letterSpacing: 0.5, textTransform: "uppercase", margin: "0 0 16px" }}>
         {plan.stage}
       </p>
-      <p style={{ fontSize: 14, color: "rgba(196,168,130,0.85)", lineHeight: 1.6, margin: "0 0 24px", minHeight: 60 }}>
+      <p style={{ fontSize: 14, color: "rgba(196,168,130,0.85)", lineHeight: 1.6, margin: "0 0 20px", flexGrow: 1 }}>
         {plan.desc}
       </p>
-      <div style={{ marginBottom: 24 }}>
-        <span style={{ fontFamily: "'Playfair Display', serif", fontSize: 36, fontWeight: 700, color: "#C4A882" }}>
-          {plan.rate}%
-        </span>
-        <span style={{ fontSize: 12, color: "rgba(196,168,130,0.55)", marginLeft: 6 }}>APY</span>
+
+      {/* Pricing */}
+      <div style={{ marginBottom: 16, padding: "14px 16px", background: "rgba(0,0,0,0.18)", borderRadius: 10 }}>
+        <div style={{ display: "flex", alignItems: "baseline", gap: 10, marginBottom: 4 }}>
+          <span style={{ fontFamily: "'Playfair Display', serif", fontSize: 30, fontWeight: 700, color: "#C4A882" }}>
+            ₹{plan.offerAmount.toLocaleString()}/-
+          </span>
+          <span style={{ fontSize: 11, fontWeight: 600, background: "#C4A882", color: "#3D2010", borderRadius: 4, padding: "2px 7px", letterSpacing: 0.5 }}>
+            OFFER
+          </span>
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+          <span style={{ fontSize: 13, color: "rgba(196,168,130,0.50)", textDecoration: "line-through" }}>
+            ₹{plan.originalAmount.toLocaleString()}/-
+          </span>
+          <span style={{ fontSize: 11, color: "rgba(196,168,130,0.50)" }}>without offer</span>
+        </div>
       </div>
-      <motion.button
-        whileHover={{ scale: 1.03, backgroundColor: plan.featured ? "#4A2E1A" : "rgba(196,168,130,0.20)" }}
-        whileTap={{ scale: 0.97 }}
-        style={{
-          width: "100%", padding: "12px 0", borderRadius: 8, fontSize: 14, fontWeight: 600,
-          background: plan.featured ? "#6B3D22" : "transparent",
-          color: plan.featured ? "#FFFFFF" : "#C4A882",
-          border: plan.featured ? "none" : "1.5px solid rgba(196,168,130,0.40)",
-          cursor: "pointer", transition: "all 0.2s",
-        }}
-      >
-        Select Plan
-      </motion.button>
+
+      {/* Hold & Withdrawal Info */}
+      <div style={{ marginBottom: 20, display: "flex", flexDirection: "column", gap: 6 }}>
+        {plan.minHold && (
+          <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, color: "rgba(196,168,130,0.80)" }}>
+            <span>⏳</span> {plan.minHold}
+          </div>
+        )}
+        <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, color: "rgba(196,168,130,0.80)" }}>
+          <span>✅</span> {plan.withdrawal}
+        </div>
+      </div>
+
     </motion.div>
   );
 }

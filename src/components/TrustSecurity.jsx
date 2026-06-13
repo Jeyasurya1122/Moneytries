@@ -3,12 +3,12 @@ import FadeUp from "./FadeUp";
 import Counter from "./Counter";
 
 const badges = [
-  { icon: "🔒", title: "SSL Secured",          desc: "256-bit TLS encryption on every connection" },
-  { icon: "🛡️", title: "Data Encryption",      desc: "AES-256 encrypted storage for all user data" },
-  { icon: "✅", title: "Regulatory Compliance", desc: "Fully compliant with SEBI & RBI guidelines" },
-  { icon: "💳", title: "Secure Payments",       desc: "PCI-DSS Level 1 certified payment gateway" },
-  { icon: "🏦", title: "Customer Protection",   desc: "Funds insured up to ₹5 Lakhs per investor" },
-  { icon: "🔐", title: "2FA Authentication",    desc: "Two-factor login protection on all accounts" },
+  { icon: "🔒", title: "SSL Secured",           desc: "256-bit TLS encryption on every connection" },
+  { icon: "🛡️", title: "Data Privacy",           desc: "Your personal information is never shared or sold to third parties" },
+  { icon: "✅", title: "Regulatory Compliance",   desc: "Fully compliant with applicable financial and data protection regulations" },
+  { icon: "💳", title: "Customer Protection",     desc: "Dedicated support team to resolve disputes and protect your interests" },
+  { icon: "🔐", title: "2FA Authentication",      desc: "Two-factor login protection on all accounts" },
+  { icon: "📋", title: "Transparent Operations",  desc: "Clear terms and full visibility into every transaction" },
 ];
 
 const milestones = [

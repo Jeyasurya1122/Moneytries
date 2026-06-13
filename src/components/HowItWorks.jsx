@@ -9,9 +9,9 @@ const steps = [
 
 const why = [
   { icon: "🌿", title: "100% Ethical",     body: "We only invest in sustainable, green-energy and socially responsible businesses." },
-  { icon: "🛡️", title: "Asset Protection", body: "Your funds are insured and protected with institutional grade security protocols." },
-  { icon: "📈", title: "Compound Growth",  body: "Our smart compounding engine ensures your money works harder every single day." },
-  { icon: "⚡", title: "Easy Liquidity",   body: "Fast, transparent withdrawals without hidden fees or lock-in periods." },
+  { icon: "🛡️", title: "Asset Protection", body: "Your money, always in safe hands. Protected, preserved, and always yours." },
+  { icon: "📈", title: "Investment Growth",  body: "Watch your money grow with every passing day. Smart investments, stronger returns." },
+  { icon: "⚡", title: "Fast Transaction",   body: "Every transaction, done in seconds. Fast, secure, and always on time." },
 ];
 
 export default function HowItWorks() {
